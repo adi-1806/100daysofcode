@@ -23,7 +23,6 @@ class Solution:
 
 
 # 230. Kth Smallest Element in a BST
-
 #Given the root of a binary search tree, and an integer k, return the kth smallest value (1-indexed) of all the values of the nodes in the tree.
 
 class Solution(object):
@@ -41,3 +40,19 @@ class Solution(object):
 
         values.sort()
         return values[k-1]
+
+
+
+# 105. Construct Binary Tree from Preorder and Inorder Traversal
+# Given two integer arrays preorder and inorder where preorder is the preorder traversal of a binary tree and inorder is the inorder traversal of the same tree, construct and return the binary tree.
+
+class Solution(object):
+    def buildTree(self, preorder, inorder):
+        if not preorder or not inorder:
+            return None
+        root = TreeNode(preorder[0])
+        mid = inorder.index(preorder[0])
+        print(mid)
+        root.left = self.buildTree(preorder [1:mid + 1], inorder [:mid])
+        root.right = self.buildTree(preorder[mid + 1:], inorder[mid + 1:])
+        return root 
