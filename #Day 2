@@ -19,3 +19,25 @@ class Solution:
                         valid(node.right, node.val, right))
 
         return valid(root, float("-inf"), float("inf"))
+
+
+
+# 230. Kth Smallest Element in a BST
+
+#Given the root of a binary search tree, and an integer k, return the kth smallest value (1-indexed) of all the values of the nodes in the tree.
+
+class Solution(object):
+    def kthSmallest(self, root, k):
+        queue = deque([root])
+        values = []
+        while queue:
+            poped = queue.popleft()
+            if poped:
+                values.append(poped.val)
+                if poped.left:
+                    queue.append(poped.left)
+                if poped.right:
+                    queue.append(poped.right)
+
+        values.sort()
+        return values[k-1]
