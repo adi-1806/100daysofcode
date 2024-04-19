@@ -75,3 +75,20 @@ class Solution(object):
         return False
 
 
+
+# 242. Valid Anagram
+# Given two strings s and t, return true if t is an anagram of s, and false otherwise.
+
+# An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.
+
+class Solution:
+    def isAnagram(self, s, t):
+        if len(s)!=len(t): return False
+        d = {}
+        for i in s:
+            if i in d: d[i] += 1
+            else: d[i] = 1
+        for i in t:
+            if i not in d or d[i]==0: return False
+            d[i] -= 1
+        return True
