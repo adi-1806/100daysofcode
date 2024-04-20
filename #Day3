@@ -11,3 +11,20 @@ class Solution(object):
         root.left = self.buildTree(preorder [1:mid + 1], inorder [:mid])
         root.right = self.buildTree(preorder[mid + 1:], inorder[mid + 1:])
         return root 
+
+# 1. Two Sum
+# Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+# You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+# You can return the answer in any order.
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        l = []
+        for i in range(len(nums)):
+            complement = target - nums[i]
+            if complement in nums[i + 1:]:
+                l.append(i)
+                l.append(nums.index(complement, i + 1))
+                return l
