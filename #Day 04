@@ -1,0 +1,17 @@
+# 347. Top K Frequent Elements
+# Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+
+class Solution(object):
+    def topKFrequent(self, nums, k):
+        dictionary = {}
+        list_elements = []
+        for element in nums:
+            if element in dictionary: dictionary[element] +=1
+            else:
+                dictionary[element] = 1
+        sorted_items = sorted(dictionary.items(), key=lambda x: x[1], reverse = True)
+        
+        for digit in range(k):
+            key, value = sorted_items[digit]
+            list_elements.append(key)
+        return list_elements
