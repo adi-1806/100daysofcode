@@ -67,3 +67,24 @@ class Solution:
                 curr = 0
 
         return max_sum 
+
+5
+# 152. Maximum Product Subarray
+
+# Given an integer array nums, find a subarray that has the largest product, and return the product.
+
+class Solution:
+    def maxProduct(self, nums):
+        res = max(nums)
+        curMin, curMax = 1, 1
+
+        for n in nums:
+            if n == 0:
+                curMin, curMax = 1,1
+                
+            tmp = n * curMax
+            curMax = max(n * curMin, n * curMax, n)
+            curMin = min(n * curMin, tmp, n)
+
+            res = max(res, curMax)
+        return res
