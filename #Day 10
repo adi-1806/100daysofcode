@@ -1,0 +1,25 @@
+1
+# 20. Valid Parentheses
+
+class Solution:
+    def isValid(self, s):
+        stack = deque()
+        my_list = list(s)
+        if not stack and s[0] == ")" or s[0] == "}" or s[0] =="]" :
+            return False
+
+        for i in my_list:
+            if i == "(" or i == "{" or i=="[":
+                stack.append(i)
+                continue
+            if stack:
+                top = stack[-1]
+                if i == ")" and top == "(" or i == "}" and top == "{" or i=="]" and top == "[":
+                    stack.pop()
+                else:
+                    return False
+            else:
+                return False
+        
+        if not stack:
+            return True
