@@ -1,0 +1,63 @@
+1
+19. Remove Nth Node From End of List
+
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+
+        total = 0
+        current = head
+        while current:
+            current = current.next
+            total += 1
+
+        m = total - n
+        if m == 0 and head.next:
+            return head.next
+        
+        if m == 0 and not head.next:
+            return 
+            
+        i = 0
+        first, second = head, None
+        while i < m:
+            second = first
+            first = first.next
+            i +=1
+
+        second.next = first.next
+        first.next = None
+
+        return head
+
+2
+143. Reorder List
+
+class Solution:
+    def reorderList(self, head: Optional[ListNode]) -> None:
+        if not head or not head.next:
+            return
+
+        fast = slow = head
+
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+        prev = None
+        current = slow
+
+        while current:
+            temp = current.next
+            current.next = prev
+            prev = current
+            current = temp
+
+
+        first = head
+        second = prev
+        while second.next:
+            temp1, temp2 = first.next , second.next
+
+            first.next = second
+            second.next = temp1
+            first, second = temp1,temp2
